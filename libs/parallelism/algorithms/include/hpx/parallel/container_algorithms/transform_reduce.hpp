@@ -635,7 +635,7 @@ namespace hpx { namespace ranges {
                         typename std::iterator_traits<Iter2>::value_type
                     >::type,
                     typename hpx::util::invoke_result<Convert,
-                        typename hpx::traits::range_traits<Rng>::value_typee,
+                        typename hpx::traits::range_traits<Rng>::value_type,
                         typename std::iterator_traits<Iter2>::value_type
                     >::type
                 >::value
