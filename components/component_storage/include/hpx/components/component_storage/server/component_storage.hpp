@@ -7,13 +7,13 @@
 #pragma once
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 #include <hpx/actions/transfer_action.hpp>
 #include <hpx/actions/transfer_continuation_action.hpp>
 #include <hpx/actions_base/basic_action.hpp>
 #include <hpx/actions_base/component_action.hpp>
-#include <hpx/runtime/naming/address.hpp>
-#include <hpx/runtime/naming/id_type.hpp>
-#include <hpx/runtime/naming/name.hpp>
+#include <hpx/naming_base/address.hpp>
+#include <hpx/naming_base/id_type.hpp>
 #include <hpx/synchronization/spinlock.hpp>
 
 #include <hpx/components/containers/unordered/unordered_map.hpp>
@@ -64,4 +64,4 @@ HPX_REGISTER_UNORDERED_MAP_DECLARATION(
     hpx::naming::gid_type, hpx_component_storage_data_type)
 
 
-
+#endif

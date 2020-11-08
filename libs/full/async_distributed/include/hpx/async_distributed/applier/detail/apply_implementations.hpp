@@ -7,19 +7,21 @@
 #pragma once
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 #include <hpx/async_distributed/applier/detail/apply_implementations_fwd.hpp>
 #include <hpx/components_base/traits/component_supports_migration.hpp>
 #include <hpx/modules/errors.hpp>
 #include <hpx/modules/format.hpp>
+#include <hpx/naming_base/address.hpp>
+#include <hpx/naming_base/id_type.hpp>
 #include <hpx/runtime/agas/interface.hpp>
-#include <hpx/runtime/naming/address.hpp>
-#include <hpx/runtime/naming/id_type.hpp>
 #include <hpx/runtime/parcelset/parcel.hpp>
 #include <hpx/runtime_fwd.hpp>
 #include <hpx/traits/action_is_target_valid.hpp>
 #include <hpx/traits/action_was_object_migrated.hpp>
 #include <hpx/traits/is_continuation.hpp>
 
+#include <system_error>
 #include <type_traits>
 #include <utility>
 
@@ -273,7 +275,7 @@ namespace hpx { namespace detail {
 
                     // invoke callback
 #if defined(HPX_HAVE_NETWORKING)
-                    cb(boost::system::error_code(), parcelset::parcel());
+                    cb(std::error_code(), parcelset::parcel());
 #else
                     cb();
 #endif
@@ -288,7 +290,7 @@ namespace hpx { namespace detail {
 
                 // invoke callback
 #if defined(HPX_HAVE_NETWORKING)
-                cb(boost::system::error_code(), parcelset::parcel());
+                cb(std::error_code(), parcelset::parcel());
 #else
                 cb();
 #endif
@@ -338,7 +340,7 @@ namespace hpx { namespace detail {
 
                     // invoke callback
 #if defined(HPX_HAVE_NETWORKING)
-                    cb(boost::system::error_code(), parcelset::parcel());
+                    cb(std::error_code(), parcelset::parcel());
 #else
                     cb();
 #endif
@@ -352,7 +354,7 @@ namespace hpx { namespace detail {
 
                 // invoke callback
 #if defined(HPX_HAVE_NETWORKING)
-                cb(boost::system::error_code(), parcelset::parcel());
+                cb(std::error_code(), parcelset::parcel());
 #else
                 cb();
 #endif
@@ -370,3 +372,4 @@ namespace hpx { namespace detail {
 #endif
     }
 }}    // namespace hpx::detail
+#endif

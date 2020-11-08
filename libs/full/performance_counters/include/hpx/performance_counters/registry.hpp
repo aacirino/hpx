@@ -7,9 +7,10 @@
 #pragma once
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 #include <hpx/functional/function.hpp>
+#include <hpx/naming_base/id_type.hpp>
 #include <hpx/performance_counters/counters.hpp>
-#include <hpx/runtime/naming/name.hpp>
 
 #include <cstddef>
 #include <cstdint>
@@ -173,3 +174,4 @@ namespace hpx { namespace performance_counters {
         static registry& instance();
     };
 }}    // namespace hpx::performance_counters
+#endif

@@ -10,6 +10,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 #include <hpx/actions_base/traits/action_priority.hpp>
 #include <hpx/agas/primary_namespace.hpp>
 #include <hpx/agas/server/primary_namespace.hpp>
@@ -28,6 +29,7 @@
 #include <hpx/modules/execution.hpp>
 #include <hpx/modules/format.hpp>
 #include <hpx/modules/logging.hpp>
+#include <hpx/naming/split_gid.hpp>
 #include <hpx/performance_counters/counter_creators.hpp>
 #include <hpx/performance_counters/counters.hpp>
 #include <hpx/performance_counters/manage_counter_type.hpp>
@@ -44,7 +46,6 @@
 #include <hpx/runtime/agas/server/symbol_namespace.hpp>
 #include <hpx/runtime/agas/symbol_namespace.hpp>
 #include <hpx/runtime/find_here.hpp>
-#include <hpx/runtime/naming/split_gid.hpp>
 #include <hpx/runtime/runtime_fwd.hpp>
 #include <hpx/runtime_configuration/runtime_configuration.hpp>
 #include <hpx/runtime_distributed.hpp>
@@ -66,6 +67,7 @@
 #include <mutex>
 #include <sstream>
 #include <string>
+#include <system_error>
 #include <utility>
 #include <vector>
 
@@ -929,8 +931,6 @@ bool addressing_service::unbind_range_local(
 { // {{{ unbind_range implementation
     try {
 
-        naming::gid_type gid = naming::detail::get_stripped_gid(lower_id);
-
         addr = primary_ns_.unbind_gid(count, lower_id);
 
         return true;
@@ -1499,7 +1499,7 @@ bool addressing_service::resolve_cached(
 ///////////////////////////////////////////////////////////////////////////////
 void addressing_service::route(
     parcelset::parcel p
-  , util::function_nonser<void(boost::system::error_code const&,
+  , util::function_nonser<void(std::error_code const&,
         parcelset::parcel const&)> && f
   , threads::thread_priority local_priority
     )
@@ -1509,7 +1509,7 @@ void addressing_service::route(
         // reschedule this call as an HPX thread
         void (addressing_service::*route_ptr)(
             parcelset::parcel,
-            util::function_nonser<void(boost::system::error_code const&,
+            util::function_nonser<void(std::error_code const&,
                 parcelset::parcel const&)> &&,
             threads::thread_priority
         ) = &addressing_service::route;
@@ -3062,3 +3062,4 @@ namespace hpx
         return agas::unregister_name(std::move(name));
     }
 }
+#endif

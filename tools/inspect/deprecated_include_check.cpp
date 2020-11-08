@@ -56,6 +56,7 @@ namespace boost
       { "boost/program_options([^\\s]*)\\.hpp", "hpx/program_options\\2.hpp" },
       { "boost/filesystem([^\\s]*)\\.hpp", "hpx/modules/filesystem.hpp" },
       { "boost/lexical_cast\\.hpp", "hpx/util/((from_string)|(to_string)).hpp" },
+      { "boost/system([^\\s]*)\\.hpp", "system_error" },
       { nullptr, nullptr }
     };
 
@@ -67,6 +68,7 @@ namespace boost
       // C/C++ source code...
       register_signature( ".c" );
       register_signature( ".cpp" );
+      register_signature( ".cu" );
       register_signature( ".cxx" );
       register_signature( ".h" );
       register_signature( ".hpp" );

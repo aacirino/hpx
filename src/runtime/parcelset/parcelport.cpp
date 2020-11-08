@@ -7,6 +7,7 @@
 
 // This is needed to make everything work with the Intel MPI library header
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 
 #if defined(HPX_HAVE_NETWORKING)
 #include <hpx/state.hpp>
@@ -27,6 +28,7 @@
 #include <cstdint>
 #include <exception>
 #include <string>
+#include <system_error>
 #include <utility>
 
 namespace hpx { namespace parcelset
@@ -269,7 +271,7 @@ namespace hpx { namespace parcelset
     ///////////////////////////////////////////////////////////////////////////
     // the code below is needed to bootstrap the parcel layer
     void parcelport::early_pending_parcel_handler(
-        boost::system::error_code const& ec, parcel const & p)
+        std::error_code const& ec, parcel const & p)
     {
         if (ec) {
             // all errors during early parcel handling are fatal
@@ -294,4 +296,5 @@ namespace hpx { namespace parcelset
 
 }}
 
+#endif
 #endif

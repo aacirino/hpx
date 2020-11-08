@@ -7,6 +7,7 @@
 //  file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 #include <hpx/agas/agas_fwd.hpp>
 #include <hpx/agas/server/primary_namespace.hpp>
 #include <hpx/assert.hpp>
@@ -14,6 +15,7 @@
 #include <hpx/functional/bind_back.hpp>
 #include <hpx/functional/function.hpp>
 #include <hpx/modules/errors.hpp>
+#include <hpx/naming/credit_handling.hpp>
 #include <hpx/performance_counters/counter_creators.hpp>
 #include <hpx/performance_counters/counters.hpp>
 #include <hpx/performance_counters/manage_counter_type.hpp>
@@ -339,3 +341,4 @@ namespace hpx { namespace agas {
 HPX_REGISTER_ACTION_ID(hpx::agas::primary_namespace_statistics_counter_action,
     primary_namespace_statistics_counter_action,
     hpx::actions::primary_namespace_statistics_counter_action_id)
+#endif

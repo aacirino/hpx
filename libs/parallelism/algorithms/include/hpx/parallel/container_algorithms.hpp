@@ -9,6 +9,7 @@
 
 #include <hpx/parallel/algorithm.hpp>
 
+#include <hpx/parallel/container_algorithms/adjacent_find.hpp>
 #include <hpx/parallel/container_algorithms/all_any_none.hpp>
 #include <hpx/parallel/container_algorithms/copy.hpp>
 #include <hpx/parallel/container_algorithms/count.hpp>
@@ -21,6 +22,7 @@
 #include <hpx/parallel/container_algorithms/includes.hpp>
 #include <hpx/parallel/container_algorithms/is_heap.hpp>
 #include <hpx/parallel/container_algorithms/is_partitioned.hpp>
+#include <hpx/parallel/container_algorithms/is_sorted.hpp>
 #include <hpx/parallel/container_algorithms/make_heap.hpp>
 #include <hpx/parallel/container_algorithms/merge.hpp>
 #include <hpx/parallel/container_algorithms/minmax.hpp>

@@ -8,6 +8,7 @@
 #pragma once
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 #include <hpx/actions_base/actions_base_support.hpp>
 #include <hpx/actions_base/traits/action_continuation.hpp>
 #include <hpx/actions_base/traits/action_priority.hpp>
@@ -15,7 +16,7 @@
 #include <hpx/actions_base/traits/action_stacksize.hpp>
 #include <hpx/async_base/launch_policy.hpp>
 #include <hpx/coroutines/thread_enums.hpp>
-#include <hpx/runtime/naming/address.hpp>
+#include <hpx/naming_base/address.hpp>
 #include <hpx/runtime_fwd.hpp>
 #include <hpx/state.hpp>
 #include <hpx/threading_base/thread_helpers.hpp>
@@ -252,3 +253,4 @@ namespace hpx { namespace applier { namespace detail {
         }
     };
 }}}    // namespace hpx::applier::detail
+#endif

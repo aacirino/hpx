@@ -9,8 +9,9 @@
 #pragma once
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 #include <hpx/modules/futures.hpp>
-#include <hpx/runtime/naming/id_type.hpp>
+#include <hpx/naming_base/id_type.hpp>
 
 #include <string>
 
@@ -48,4 +49,4 @@ namespace hpx
     HPX_EXPORT future<std::string> get_locality_name(
         naming::id_type const& id);
 }
-
+#endif

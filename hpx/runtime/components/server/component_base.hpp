@@ -7,15 +7,16 @@
 #pragma once
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 #include <hpx/assert.hpp>
 #include <hpx/components_base/component_type.hpp>
 #include <hpx/components_base/traits/is_component.hpp>
 #include <hpx/functional/unique_function.hpp>
 #include <hpx/modules/errors.hpp>
+#include <hpx/naming_base/address.hpp>
+#include <hpx/naming_base/id_type.hpp>
 #include <hpx/runtime/components/server/create_component_fwd.hpp>
 #include <hpx/runtime/components_fwd.hpp>
-#include <hpx/runtime/naming/address.hpp>
-#include <hpx/runtime/naming/name.hpp>
 #include <hpx/runtime_fwd.hpp>
 #include <hpx/type_support/unused.hpp>
 
@@ -192,4 +193,4 @@ namespace hpx { namespace components
         }
     };
 }}
-
+#endif

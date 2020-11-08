@@ -11,6 +11,7 @@
 #pragma once
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 
 #if defined(HPX_HAVE_PARCELPORT_TCP)
 #include <hpx/config/asio.hpp>
@@ -26,6 +27,7 @@
 #include <memory>
 #include <set>
 #include <string>
+#include <system_error>
 #include <type_traits>
 #include <vector>
 
@@ -107,9 +109,9 @@ namespace hpx { namespace parcelset
             parcelset::locality create_locality() const;
 
         private:
-            void handle_accept(boost::system::error_code const & e,
+            void handle_accept(std::error_code const & e,
                 std::shared_ptr<receiver> receiver_conn);
-            void handle_read_completion(boost::system::error_code const& e,
+            void handle_read_completion(std::error_code const& e,
                 std::shared_ptr<receiver> receiver_conn);
 
             /// Acceptor used to listen for incoming connections.
@@ -132,4 +134,4 @@ namespace hpx { namespace parcelset
 #include <hpx/config/warnings_suffix.hpp>
 
 #endif
-
+#endif

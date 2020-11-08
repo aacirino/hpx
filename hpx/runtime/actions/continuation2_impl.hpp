@@ -6,11 +6,13 @@
 
 #pragma once
 
+#include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
+#include <hpx/async_distributed/applier/apply_continue_fwd.hpp>
+#include <hpx/async_distributed/applier/detail/apply_implementations_fwd.hpp>
 #include <hpx/functional/bind.hpp>
 #include <hpx/functional/invoke_result.hpp>
-#include <hpx/async_distributed/applier/detail/apply_implementations_fwd.hpp>
-#include <hpx/async_distributed/applier/apply_continue_fwd.hpp>
-#include <hpx/runtime/naming/id_type.hpp>
+#include <hpx/naming_base/id_type.hpp>
 #include <hpx/serialization/access.hpp>
 
 #include <type_traits>
@@ -77,4 +79,4 @@ namespace hpx { namespace actions {
         // set_value action  (default: set_lco_value_continuation)
     };
 }}
-
+#endif

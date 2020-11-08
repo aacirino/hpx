@@ -8,6 +8,7 @@
 #pragma once
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 #include <hpx/actions_base/action_priority.hpp>
 #include <hpx/actions_base/basic_action_fwd.hpp>
 #include <hpx/actions_base/continuation_fwd.hpp>
@@ -16,11 +17,10 @@
 #include <hpx/futures/traits/future_traits.hpp>
 #include <hpx/modules/errors.hpp>
 #include <hpx/modules/logging.hpp>
+#include <hpx/naming_base/id_type.hpp>
 #include <hpx/preprocessor/stringize.hpp>
 #include <hpx/runtime/actions/trigger.hpp>
 #include <hpx/runtime/agas/interface.hpp>
-#include <hpx/runtime/naming/id_type.hpp>
-#include <hpx/runtime/naming/name.hpp>
 #include <hpx/runtime/trigger_lco.hpp>
 #include <hpx/serialization/base_object.hpp>
 #include <hpx/serialization/serialize.hpp>
@@ -435,4 +435,4 @@ namespace hpx { namespace actions
 }}
 
 #include <hpx/config/warnings_suffix.hpp>
-
+#endif

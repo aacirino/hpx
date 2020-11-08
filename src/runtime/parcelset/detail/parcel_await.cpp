@@ -5,15 +5,16 @@
 //  file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 
 #if defined(HPX_HAVE_NETWORKING)
 #include <hpx/actions/actions_fwd.hpp>
 #include <hpx/functional/unique_function.hpp>
 #include <hpx/lcos_local/detail/preprocess_future.hpp>
+#include <hpx/naming/detail/preprocess_gid_types.hpp>
 #include <hpx/runtime/parcelset/detail/parcel_await.hpp>
 #include <hpx/runtime/parcelset/parcel.hpp>
 #include <hpx/runtime/parcelset_fwd.hpp>
-#include <hpx/runtime/serialization/detail/preprocess_gid_types.hpp>
 #include <hpx/serialization/detail/preprocess_container.hpp>
 #include <hpx/serialization/output_archive.hpp>
 #include <hpx/serialization/serialize.hpp>
@@ -172,4 +173,5 @@ namespace hpx { namespace parcelset { namespace detail {
     }
 }}}    // namespace hpx::parcelset::detail
 
+#endif
 #endif

@@ -7,11 +7,12 @@
 #pragma once
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 #include <hpx/actions_base/plain_action.hpp>
+#include <hpx/futures/traits/get_remote_result.hpp>
+#include <hpx/naming_base/id_type.hpp>
 #include <hpx/runtime/components/stubs/runtime_support.hpp>
 #include <hpx/runtime/get_ptr.hpp>
-#include <hpx/runtime/naming/name.hpp>
-#include <hpx/futures/traits/get_remote_result.hpp>
 
 #include <memory>
 
@@ -102,4 +103,4 @@ namespace hpx { namespace components { namespace server
     {};
 }}}
 
-
+#endif

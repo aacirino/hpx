@@ -9,26 +9,28 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 #include <hpx/assert.hpp>
-#include <hpx/modules/errors.hpp>
-#include <hpx/modules/format.hpp>
+#include <hpx/async_distributed/applier/apply.hpp>
 #include <hpx/functional/bind_back.hpp>
 #include <hpx/functional/bind_front.hpp>
 #include <hpx/lcos/base_lco_with_value.hpp>
+#include <hpx/modules/errors.hpp>
+#include <hpx/modules/format.hpp>
+#include <hpx/naming/credit_handling.hpp>
+#include <hpx/naming/split_gid.hpp>
 #include <hpx/performance_counters/counter_creators.hpp>
 #include <hpx/performance_counters/counters.hpp>
 #include <hpx/performance_counters/manage_counter_type.hpp>
 #include <hpx/runtime/agas/interface.hpp>
 #include <hpx/runtime/agas/namespace_action_code.hpp>
 #include <hpx/runtime/agas/server/symbol_namespace.hpp>
-#include <hpx/async_distributed/applier/apply.hpp>
-#include <hpx/runtime/naming/split_gid.hpp>
 #include <hpx/thread_support/unlock_guard.hpp>
 #include <hpx/timing/scoped_timer.hpp>
 #include <hpx/type_support/unused.hpp>
-#include <hpx/util/regex_from_pattern.hpp>
 #include <hpx/util/get_and_reset_value.hpp>
 #include <hpx/util/insert_checked.hpp>
+#include <hpx/util/regex_from_pattern.hpp>
 
 #include <atomic>
 #include <cstddef>
@@ -749,4 +751,4 @@ void symbol_namespace::counter_data::increment_on_event_count()
 }
 
 }}}
-
+#endif

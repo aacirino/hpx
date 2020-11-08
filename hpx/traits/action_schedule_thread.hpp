@@ -6,9 +6,10 @@
 
 #pragma once
 
-#include <hpx/runtime/naming/address.hpp>
+#include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
+#include <hpx/naming_base/address.hpp>
 #include <hpx/coroutines/thread_enums.hpp>
-#include <hpx/modules/naming.hpp>
 #include <hpx/threading_base/thread_helpers.hpp>
 #include <hpx/threading_base/thread_init_data.hpp>
 #include <hpx/type_support/detail/wrap_int.hpp>
@@ -73,4 +74,4 @@ namespace hpx { namespace traits
     };
 }}
 
-
+#endif

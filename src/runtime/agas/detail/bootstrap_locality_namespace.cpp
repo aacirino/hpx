@@ -9,11 +9,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 
 #include <hpx/assert.hpp>
+#include <hpx/naming_base/id_type.hpp>
 #include <hpx/runtime/agas/detail/bootstrap_locality_namespace.hpp>
 #include <hpx/runtime/agas/server/locality_namespace.hpp>
-#include <hpx/runtime/naming/name.hpp>
 #include <hpx/runtime/parcelset/locality.hpp>
 
 #include <cstdint>
@@ -126,3 +127,4 @@ namespace hpx { namespace agas { namespace detail
         server_.unregister_server_instance(ec);
     }
 }}}
+#endif

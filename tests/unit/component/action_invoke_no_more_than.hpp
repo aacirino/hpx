@@ -7,15 +7,16 @@
 #pragma once
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 #include <hpx/assert.hpp>
 #include <hpx/functional/bind_back.hpp>
+#include <hpx/futures/traits/is_future.hpp>
+#include <hpx/naming_base/id_type.hpp>
+#include <hpx/runtime/actions/continuation.hpp>
 #include <hpx/synchronization/counting_semaphore.hpp>
 #include <hpx/synchronization/spinlock.hpp>
-#include <hpx/runtime/actions/continuation.hpp>
-#include <hpx/runtime/naming/name.hpp>
 #include <hpx/traits/action_decorate_continuation.hpp>
 #include <hpx/traits/action_decorate_function.hpp>
-#include <hpx/futures/traits/is_future.hpp>
 #include <hpx/type_support/static.hpp>
 
 #include <cstddef>
@@ -229,4 +230,4 @@ namespace hpx { namespace actions { namespace detail
         {};                                                                   \
     }}                                                                        \
 /**/
-
+#endif

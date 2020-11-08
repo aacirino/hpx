@@ -158,6 +158,7 @@ namespace hpx { namespace lcos {
 #else
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 #include <hpx/actions/base_action.hpp>
 #include <hpx/actions/transfer_action.hpp>
 #include <hpx/actions/transfer_continuation_action.hpp>
@@ -169,10 +170,10 @@ namespace hpx { namespace lcos {
 #include <hpx/datastructures/tuple.hpp>
 #include <hpx/futures/future.hpp>
 #include <hpx/futures/traits/promise_local_result.hpp>
+#include <hpx/naming_base/id_type.hpp>
 #include <hpx/preprocessor/cat.hpp>
 #include <hpx/preprocessor/expand.hpp>
 #include <hpx/preprocessor/nargs.hpp>
-#include <hpx/runtime/naming/name.hpp>
 #include <hpx/serialization/vector.hpp>
 #include <hpx/type_support/pack.hpp>
 
@@ -564,4 +565,5 @@ namespace hpx { namespace lcos {
         HPX_PP_CAT(fold_, Name))                                               \
     /**/
 
+#endif
 #endif    // DOXYGEN

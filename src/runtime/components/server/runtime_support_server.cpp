@@ -6,6 +6,7 @@
 //  file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 #include <hpx/modules/async_distributed.hpp>
 #include <hpx/modules/errors.hpp>
 #include <hpx/modules/filesystem.hpp>
@@ -36,7 +37,6 @@
 #include <hpx/runtime/components/server/runtime_support.hpp>
 #include <hpx/runtime/components/stubs/runtime_support.hpp>
 #include <hpx/runtime/naming/resolver_client.hpp>
-#include <hpx/runtime/naming/unmanaged.hpp>
 #include <hpx/runtime/runtime_fwd.hpp>
 #include <hpx/runtime_configuration/static_factory_data.hpp>
 #include <hpx/runtime_distributed/find_localities.hpp>
@@ -70,6 +70,7 @@
 #include <set>
 #include <sstream>
 #include <string>
+#include <system_error>
 #include <thread>
 #include <utility>
 #include <vector>
@@ -1518,7 +1519,7 @@ namespace hpx { namespace components { namespace server {
                 typedef boost::tokenizer<boost::char_separator<char>> tokenizer;
                 boost::char_separator<char> sep(HPX_INI_PATH_DELIMITER);
                 tokenizer tokens(component_path, sep);
-                fs::error_code fsec;
+                std::error_code fsec;
                 for (tokenizer::iterator it = tokens.begin();
                      it != tokens.end(); ++it)
                 {
@@ -1992,7 +1993,7 @@ namespace hpx { namespace components { namespace server {
                 typedef boost::tokenizer<boost::char_separator<char>> tokenizer;
                 boost::char_separator<char> sep(HPX_INI_PATH_DELIMITER);
                 tokenizer tokens(component_path, sep);
-                fs::error_code fsec;
+                std::error_code fsec;
                 for (tokenizer::iterator it = tokens.begin();
                      it != tokens.end(); ++it)
                 {
@@ -2179,3 +2180,4 @@ namespace hpx { namespace components { namespace server {
     }
 #endif
 }}}    // namespace hpx::components::server
+#endif

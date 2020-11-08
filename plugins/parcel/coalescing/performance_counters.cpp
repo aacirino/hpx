@@ -5,18 +5,19 @@
 //  file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 
 #if defined(HPX_HAVE_NETWORKING) && defined(HPX_HAVE_PARCEL_COALESCING)
 #include <hpx/functional/function.hpp>
-#include <hpx/performance_counters/counters.hpp>
+#include <hpx/naming_base/id_type.hpp>
 #include <hpx/performance_counters/counter_creators.hpp>
+#include <hpx/performance_counters/counters.hpp>
 #include <hpx/performance_counters/manage_counter_type.hpp>
-#include <hpx/runtime_local/startup_function.hpp>
 #include <hpx/runtime/components/component_startup_shutdown.hpp>
-#include <hpx/runtime/naming/name.hpp>
-#include <hpx/util/from_string.hpp>
+#include <hpx/runtime_local/startup_function.hpp>
 #include <hpx/string_util/classification.hpp>
 #include <hpx/string_util/split.hpp>
+#include <hpx/util/from_string.hpp>
 
 #include <hpx/plugins/parcel/coalescing_counter_registry.hpp>
 
@@ -590,4 +591,5 @@ namespace hpx { namespace plugins { namespace parcel
 // Note that this macro can be used not more than once in one module.
 HPX_REGISTER_STARTUP_MODULE_DYNAMIC(hpx::plugins::parcel::get_startup);
 
+#endif
 #endif

@@ -7,14 +7,15 @@
 #pragma once
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 #include <hpx/components_base/traits/component_pin_support.hpp>
+#include <hpx/components_base/traits/component_supports_migration.hpp>
 #include <hpx/functional/bind_back.hpp>
 #include <hpx/modules/errors.hpp>
+#include <hpx/naming_base/address.hpp>
+#include <hpx/naming_base/id_type.hpp>
 #include <hpx/runtime/components/runtime_support.hpp>
 #include <hpx/runtime/components/server/migrate_component.hpp>
-#include <hpx/runtime/naming/address.hpp>
-#include <hpx/runtime/naming/id_type.hpp>
-#include <hpx/components_base/traits/component_supports_migration.hpp>
 
 #include <hpx/components/component_storage/export_definitions.hpp>
 #include <hpx/components/component_storage/server/component_storage.hpp>
@@ -178,4 +179,4 @@ namespace hpx { namespace components { namespace server
 }}}
 
 
-
+#endif

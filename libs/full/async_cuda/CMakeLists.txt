@@ -10,10 +10,10 @@ if(NOT HPX_WITH_ASYNC_CUDA)
   return()
 endif()
 
-if(NOT TARGET Cuda::cuda)
+if(NOT TARGET Cuda::cuda AND NOT HPX_WITH_HIP)
   message(
     FATAL_ERROR
-      "Cuda future support has been enabled, but the Cuda installation is not setup"
+      "CUDA/HIP future support has been enabled, but the CUDA or HIP installation is not setup"
   )
 endif()
 
@@ -26,6 +26,8 @@ set(async_cuda_headers
     hpx/async_cuda/cuda_exception.hpp
     hpx/async_cuda/cuda_future.hpp
     hpx/async_cuda/cublas_executor.hpp
+    hpx/async_cuda/custom_blas_api.hpp
+    hpx/async_cuda/custom_gpu_api.hpp
     hpx/async_cuda/get_targets.hpp
     hpx/async_cuda/target.hpp
 )
@@ -42,7 +44,16 @@ set(async_cuda_sources cuda_future.cpp cuda_target.cpp get_targets.cpp)
 
 if(HPX_WITH_DISTRIBUTED_RUNTIME)
   set(async_cuda_extra_module_dependencies
-      hpx_actions_base hpx_async_distributed hpx_performance_counters
+      hpx_actions_base hpx_async_distributed hpx_naming
+      hpx_performance_counters
+  )
+endif()
+
+if(HPX_WITH_HIP AND TARGET roc::hipblas)
+  set(async_cuda_extra_deps ${async_cuda_extra_deps} roc::hipblas)
+elseif(HPX_WITH_CUDA AND TARGET Cuda::cuda)
+  set(async_cuda_extra_deps ${async_cuda_extra_deps} Cuda::cuda
+                            ${CUDA_CUBLAS_LIBRARIES}
   )
 endif()
 
@@ -55,8 +66,8 @@ add_hpx_module(
   SOURCES ${async_cuda_sources}
   HEADERS ${async_cuda_headers}
   COMPAT_HEADERS ${async_cuda_compat_headers}
-  MODULE_DEPENDENCIES hpx_naming hpx_program_options hpx_runtime_configuration
+  MODULE_DEPENDENCIES hpx_program_options hpx_runtime_configuration
                       hpx_runtime_local ${async_cuda_extra_module_dependencies}
-  DEPENDENCIES hpx_core hpx_parallelism Cuda::cuda
+  DEPENDENCIES hpx_core hpx_parallelism ${async_cuda_extra_deps}
   CMAKE_SUBDIRS examples tests
 )

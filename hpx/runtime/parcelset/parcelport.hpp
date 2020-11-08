@@ -11,6 +11,7 @@
 #pragma once
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 
 #if defined(HPX_HAVE_NETWORKING)
 #include <hpx/async_distributed/applier_fwd.hpp>
@@ -35,6 +36,7 @@
 #include <mutex>
 #include <set>
 #include <string>
+#include <system_error>
 #include <vector>
 
 #include <hpx/config/warnings_prefix.hpp>
@@ -66,7 +68,7 @@ namespace hpx { namespace parcelset
 
     public:
         typedef util::function_nonser<
-            void(boost::system::error_code const&, parcel const&)
+            void(std::error_code const&, parcel const&)
         > write_handler_type;
 
         typedef util::function_nonser<
@@ -125,7 +127,7 @@ namespace hpx { namespace parcelset
         ///                 function object is expected to be:
         ///
         /// \code
-        ///      void handler(boost::system::error_code const& err,
+        ///      void handler(std::error_code const& err,
         ///                   std::size_t bytes_written);
         /// \endcode
         virtual void put_parcel(locality const & dest, parcel p,
@@ -143,7 +145,7 @@ namespace hpx { namespace parcelset
         ///                 these function objects is expected to be:
         ///
         /// \code
-        ///      void handler(boost::system::error_code const& err,
+        ///      void handler(std::error_code const& err,
         ///                   std::size_t bytes_written);
         /// \endcode
         virtual void put_parcels(locality const& dests,
@@ -326,7 +328,7 @@ namespace hpx { namespace parcelset
         }
 
         // callback while bootstrap the parcel layer
-        void early_pending_parcel_handler(boost::system::error_code const& ec,
+        void early_pending_parcel_handler(std::error_code const& ec,
             parcel const & p);
 
     protected:
@@ -379,4 +381,5 @@ namespace hpx { namespace parcelset
 
 #include <hpx/config/warnings_suffix.hpp>
 
+#endif
 #endif

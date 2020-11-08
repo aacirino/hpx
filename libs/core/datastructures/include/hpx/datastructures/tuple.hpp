@@ -347,7 +347,8 @@ namespace hpx {
         {
             int const _sequencer[] = {
                 ((_members.template get<Is>() =
-                         hpx::get<Is>(std::forward<UTuple>(other))),
+                         // NOLINTNEXTLINE(bugprone-signed-char-misuse)
+                     hpx::get<Is>(std::forward<UTuple>(other))),
                     0)...};
             (void) _sequencer;
         }
@@ -587,7 +588,14 @@ namespace hpx {
         static constexpr HPX_HOST_DEVICE HPX_FORCEINLINE type& get(
             std::array<Type, Size>& tuple) noexcept
         {
+// Hipcc compiler bug (with rocm-3.7.0 and rocm-3.8.0) return a const-reference
+// when accessing a non-const array, need to explicitly cast
+// https://github.com/ROCm-Developer-Tools/HIP/issues/2173
+#if defined(__HIPCC__)
+            return const_cast<type&>(tuple[I]);
+#else
             return tuple[I];
+#endif
         }
 
         static constexpr HPX_HOST_DEVICE HPX_FORCEINLINE type const& get(

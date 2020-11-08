@@ -9,13 +9,14 @@
 #pragma once
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 #include <hpx/actions_base/plain_action.hpp>
 #include <hpx/async_colocated/async_colocated.hpp>
 #include <hpx/async_distributed/async.hpp>
 #include <hpx/components_base/traits/is_component.hpp>
 #include <hpx/futures/future.hpp>
+#include <hpx/naming_base/id_type.hpp>
 #include <hpx/runtime/components/server/copy_component.hpp>
-#include <hpx/runtime/naming/name.hpp>
 
 #include <type_traits>
 
@@ -123,4 +124,4 @@ namespace hpx { namespace components
             to_copy, to_copy, target_locality));
     }
 }}
-
+#endif

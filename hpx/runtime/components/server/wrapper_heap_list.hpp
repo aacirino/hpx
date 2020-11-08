@@ -6,8 +6,10 @@
 
 #pragma once
 
+#include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 #include <hpx/components_base/component_type.hpp>
-#include <hpx/runtime/naming/name.hpp>
+#include <hpx/naming_base/id_type.hpp>
 #include <hpx/thread_support/unlock_guard.hpp>
 #include <hpx/util/generate_unique_ids.hpp>
 #include <hpx/util/one_size_heap_list.hpp>
@@ -81,4 +83,4 @@ namespace hpx { namespace components { namespace detail
     };
 
 }}} // namespace hpx::components::detail
-
+#endif

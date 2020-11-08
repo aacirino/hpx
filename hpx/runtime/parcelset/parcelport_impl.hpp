@@ -11,6 +11,7 @@
 #pragma once
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 
 #if defined(HPX_HAVE_NETWORKING)
 #include <hpx/assert.hpp>
@@ -42,6 +43,7 @@
 #include <memory>
 #include <mutex>
 #include <string>
+#include <system_error>
 #include <type_traits>
 #include <utility>
 #include <vector>
@@ -416,7 +418,7 @@ namespace hpx { namespace parcelset
             put_parcel(
                 dest
               , std::move(p)
-              , [=](boost::system::error_code const& ec, parcel const & p) -> void {
+              , [=](std::error_code const& ec, parcel const & p) -> void {
                     return early_pending_parcel_handler(ec, p);
                 }
             );
@@ -838,7 +840,7 @@ namespace hpx { namespace parcelset
 
 
         void send_pending_parcels_trampoline(
-            boost::system::error_code const& ec,
+            std::error_code const& ec,
             locality const& locality_id,
             std::shared_ptr<connection> sender_connection)
         {
@@ -963,4 +965,5 @@ namespace hpx { namespace parcelset
     };
 }}
 
+#endif
 #endif

@@ -126,17 +126,11 @@ function(add_hpx_module libname modulename)
   set(all_headers ${${modulename}_HEADERS})
 
   # Write full path for the sources files
-  list(
-    TRANSFORM ${modulename}_SOURCES
-    PREPEND ${SOURCE_ROOT}/
-            OUTPUT_VARIABLE
-            sources
+  list(TRANSFORM ${modulename}_SOURCES PREPEND ${SOURCE_ROOT}/ OUTPUT_VARIABLE
+                                                               sources
   )
-  list(
-    TRANSFORM ${modulename}_HEADERS
-    PREPEND ${HEADER_ROOT}/
-            OUTPUT_VARIABLE
-            headers
+  list(TRANSFORM ${modulename}_HEADERS PREPEND ${HEADER_ROOT}/ OUTPUT_VARIABLE
+                                                               headers
   )
   if(${_have_compatibility_headers_option}
      AND HPX_${modulename_upper}_WITH_COMPATIBILITY_HEADERS
@@ -232,13 +226,29 @@ function(add_hpx_module libname modulename)
     set(generated_headers ${generated_headers} ${global_config_file})
   endif()
 
+  # collect zombie generated headers
+  file(GLOB_RECURSE zombie_generated_headers
+       ${CMAKE_CURRENT_BINARY_DIR}/include/*.hpp
+       ${CMAKE_CURRENT_BINARY_DIR}/include_compatibility/*.hpp
+  )
+  list(REMOVE_ITEM zombie_generated_headers ${generated_headers}
+       ${compat_headers}
+  )
+  foreach(zombie_header IN LISTS zombie_generated_headers)
+    hpx_warn("Removing zombie generated header: ${zombie_header}")
+    file(REMOVE ${zombie_header})
+  endforeach()
+
   # list all specified headers
   foreach(header_file ${headers})
     hpx_debug(${header_file})
   endforeach(header_file)
 
   # create library modules
-  if(${name}_CUDA AND HPX_WITH_CUDA_COMPUTE)
+  if(${name}_CUDA
+     AND HPX_WITH_CUDA_COMPUTE
+     AND NOT HPX_WITH_HIP
+  )
     # cmake-format: off
     cuda_add_library(
       hpx_${modulename} STATIC

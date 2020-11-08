@@ -12,6 +12,7 @@
 #pragma once
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 #include <hpx/agas/agas_fwd.hpp>
 #include <hpx/agas/gva.hpp>
 #include <hpx/agas/primary_namespace.hpp>
@@ -21,11 +22,11 @@
 #include <hpx/functional/function.hpp>
 #include <hpx/modules/errors.hpp>
 #include <hpx/modules/runtime_configuration.hpp>
+#include <hpx/naming_base/address.hpp>
+#include <hpx/naming_base/id_type.hpp>
 #include <hpx/runtime/agas/component_namespace.hpp>
 #include <hpx/runtime/agas/locality_namespace.hpp>
 #include <hpx/runtime/agas/symbol_namespace.hpp>
-#include <hpx/runtime/naming/address.hpp>
-#include <hpx/runtime/naming/name.hpp>
 #include <hpx/runtime/parcelset_fwd.hpp>
 #include <hpx/state.hpp>
 #include <hpx/synchronization/spinlock.hpp>
@@ -40,6 +41,7 @@
 #include <mutex>
 #include <set>
 #include <string>
+#include <system_error>
 #include <utility>
 #include <vector>
 
@@ -1135,7 +1137,7 @@ public:
     ///                   destination.
     void route(
         parcelset::parcel p
-      , util::function_nonser<void(boost::system::error_code const&,
+      , util::function_nonser<void(std::error_code const&,
             parcelset::parcel const&)> &&
       , threads::thread_priority local_priority =
             threads::thread_priority_default);
@@ -1423,4 +1425,4 @@ public:
 
 #include <hpx/config/warnings_suffix.hpp>
 
-
+#endif

@@ -163,7 +163,6 @@ namespace hpx { namespace lcos {
 #else
 
 #include <hpx/config.hpp>
-
 #if !defined(HPX_COMPUTE_DEVICE_CODE)
 
 #include <hpx/async_base/launch_policy.hpp>
@@ -172,8 +171,8 @@ namespace hpx { namespace lcos {
 #include <hpx/futures/future.hpp>
 #include <hpx/futures/traits/acquire_shared_state.hpp>
 #include <hpx/modules/execution_base.hpp>
+#include <hpx/naming_base/id_type.hpp>
 #include <hpx/runtime/basename_registration.hpp>
-#include <hpx/runtime/naming/id_type.hpp>
 #include <hpx/runtime_distributed/get_num_localities.hpp>
 #include <hpx/thread_support/assert_owns_lock.hpp>
 #include <hpx/type_support/unused.hpp>

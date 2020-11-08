@@ -6,6 +6,7 @@
 //  file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 
 #if defined(HPX_HAVE_NETWORKING)
 #include <hpx/modules/errors.hpp>
@@ -14,6 +15,8 @@
 #include <hpx/runtime/parcelset/parcelhandler.hpp>
 #include <hpx/runtime/runtime_fwd.hpp>
 #include <hpx/runtime_distributed.hpp>
+
+#include <system_error>
 
 ///////////////////////////////////////////////////////////////////////////////
 namespace hpx { namespace detail
@@ -24,7 +27,7 @@ namespace hpx { namespace detail
 namespace hpx { namespace parcelset { namespace detail
 {
     void parcel_route_handler(
-        boost::system::error_code const& ec,
+        std::error_code const& ec,
         parcelset::parcel const& p)
     {
         parcelhandler& ph = hpx::get_runtime_distributed().get_parcel_handler();
@@ -37,4 +40,5 @@ namespace hpx { namespace parcelset { namespace detail
     }
 }}}
 
+#endif
 #endif

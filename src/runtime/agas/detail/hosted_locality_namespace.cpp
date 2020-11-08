@@ -9,13 +9,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 
 #if defined(HPX_HAVE_NETWORKING)
 #include <hpx/assert.hpp>
 #include <hpx/modules/async_distributed.hpp>
+#include <hpx/naming_base/id_type.hpp>
 #include <hpx/runtime/agas/detail/hosted_locality_namespace.hpp>
 #include <hpx/runtime/agas/server/locality_namespace.hpp>
-#include <hpx/runtime/naming/name.hpp>
 #include <hpx/runtime/parcelset/locality.hpp>
 #include <hpx/serialization/vector.hpp>
 
@@ -116,4 +117,5 @@ namespace hpx { namespace agas { namespace detail
     }
 }}}
 
+#endif
 #endif

@@ -8,12 +8,12 @@ source $SPACK_ROOT/share/spack/setup-env.sh
 
 export CRAYPE_LINK_TYPE=dynamic
 export APPS_ROOT="/apps/daint/SSL/HPX/packages"
-export CLANG_VER="10.0.1"
+export CLANG_VER="11.0.0"
 export CXX_STD="17"
 export BOOST_VER="1.74.0"
 export HWLOC_VER="2.2.0"
 export CLANG_ROOT="${APPS_ROOT}/llvm-${CLANG_VER}"
-export BOOST_ROOT="${APPS_ROOT}/boost-${BOOST_VER}-clang-${CLANG_VER}-c++${CXX_STD}-debug"
+export BOOST_ROOT="${APPS_ROOT}/boost-${BOOST_VER}-clang-${CLANG_VER}-c++${CXX_STD}-release"
 export HWLOC_ROOT="${APPS_ROOT}/hwloc-${HWLOC_VER}-gcc-10.2.0"
 export CXXFLAGS="-Wno-unused-command-line-argument -stdlib=libc++ -nostdinc++ -I${CLANG_ROOT}/include/c++/v1 -L${CLANG_ROOT}/lib -Wl,-rpath,${CLANG_ROOT}/lib,-lsupc++"
 export LDCXXFLAGS="-stdlib=libc++ -L${CLANG_ROOT}/lib -Wl,-rpath,${CLANG_ROOT}/lib,-lsupc++"
@@ -32,7 +32,7 @@ configure_extra_options+=" -DHPX_WITH_CXX${CXX_STD}=ON"
 configure_extra_options+=" -DHPX_WITH_COMPILER_WARNINGS=ON"
 configure_extra_options+=" -DHPX_WITH_COMPILER_WARNINGS_AS_ERRORS=ON"
 configure_extra_options+=" -DHPX_WITH_SPINLOCK_DEADLOCK_DETECTION=ON"
-configure_extra_options+=" -DHPX_UNITY_BUILD=ON"
+configure_extra_options+=" -DHPX_WITH_UNITY_BUILD=ON"
 
 # enable extra counters to verify everything compiles
 configure_extra_options+=" -DHPX_WITH_BACKGROUD_THREAD_COUNTERS=ON"

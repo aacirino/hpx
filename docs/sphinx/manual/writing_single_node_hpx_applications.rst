@@ -355,7 +355,7 @@ Parallel algorithms
      * Description
      * In header
      * Algorithm page at cppreference.com
-   * * :cpp:func:`hpx::parallel::v1::adjacent_find`
+   * * :cpp:func:`hpx::adjacent_find`
      * Computes the differences between adjacent elements in a range.
      * ``<hpx/algorithm.hpp>``
      * :cppreference-algorithm:`adjacent_find`
@@ -633,11 +633,11 @@ Parallel algorithms
      * Description
      * In header
      * Algorithm page at cppreference.com
-   * * :cpp:func:`hpx::parallel::v1::is_sorted`
+   * * :cpp:func:`hpx::is_sorted`
      * Returns ``true`` if each element in a range is sorted.
      * ``<hpx/algorithm.hpp>``
      * :cppreference-algorithm:`is_sorted`
-   * * :cpp:func:`hpx::parallel::v1::is_sorted_until`
+   * * :cpp:func:`hpx::is_sorted_until`
      * Returns the first unsorted element.
      * ``<hpx/algorithm.hpp>``
      * :cppreference-algorithm:`is_sorted_until`
@@ -649,6 +649,10 @@ Parallel algorithms
      * Sorts the elements in a range, maintain sequence of equal elements.
      * ``<hpx/algorithm.hpp>``
      * :cppreference-algorithm:`stable_sort`
+   * * :cpp:func:`hpx::partial_sort`
+     * Sorts the first elements in a range.
+     * ``<hpx/algorithm.hpp>``
+     * :cppreference-algorithm:`partial_sort`
    * * :cpp:func:`hpx::parallel::v1::sort_by_key`
      * Sorts one range of data using keys supplied in another range.
      * ``<hpx/algorithm.hpp>``

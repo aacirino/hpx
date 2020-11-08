@@ -7,12 +7,13 @@
 #pragma once
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 #include <hpx/components_base/pinned_ptr.hpp>
 #include <hpx/functional/bind_front.hpp>
 #include <hpx/futures/future.hpp>
 #include <hpx/modules/threading_base.hpp>
+#include <hpx/naming_base/id_type.hpp>
 #include <hpx/runtime/components/server/migration_support.hpp>
-#include <hpx/runtime/naming/id_type.hpp>
 #include <hpx/traits/action_decorate_function.hpp>
 
 #include <cstdint>
@@ -136,4 +137,4 @@ namespace hpx { namespace components
         }
     };
 }}
-
+#endif

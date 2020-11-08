@@ -5,27 +5,32 @@
 //  Distributed under the Boost Software License, Version 1.0. (See accompanying
 //  file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
+// hpxinspect:nodeprecatedinclude:boost/system/system_error.hpp
+// hpxinspect:nodeprecatedname:boost::system::system_error
+
 #pragma once
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 
 #if defined(HPX_HAVE_NETWORKING)
 #include <hpx/assert.hpp>
+#include <hpx/functional/deferred_call.hpp>
 #include <hpx/modules/errors.hpp>
 #include <hpx/modules/logging.hpp>
-#include <hpx/runtime/parcelset/detail/data_point.hpp>
-#include <hpx/runtime/naming/name.hpp>
+#include <hpx/naming_base/id_type.hpp>
 #include <hpx/runtime/naming/resolver_client.hpp>
+#include <hpx/runtime/parcelset/detail/data_point.hpp>
 #include <hpx/runtime/parcelset/detail/parcel_route_handler.hpp>
 #include <hpx/runtime/parcelset/parcel.hpp>
-#include <hpx/serialization/serialize.hpp>
 #include <hpx/runtime_fwd.hpp>
+#include <hpx/serialization/serialize.hpp>
 #include <hpx/timing/high_resolution_timer.hpp>
-#include <hpx/functional/deferred_call.hpp>
 
 #if BOOST_ASIO_HAS_BOOST_THROW_EXCEPTION != 0
 #include <boost/exception/exception.hpp>
 #endif
+#include <boost/system/system_error.hpp>
 
 #include <cstddef>
 #include <cstdint>
@@ -330,4 +335,5 @@ namespace hpx { namespace parcelset
 
 }}
 
+#endif
 #endif

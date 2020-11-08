@@ -396,6 +396,12 @@ namespace hpx { namespace parallel { inline namespace v1 {
                 {
                     util::detail::handle_local_exceptions<ExPolicy>::call(
                         std::current_exception());
+                    HPX_ASSERT(false);
+                    // To silence no return statement in all control blocks
+                    auto len1 = detail::distance(first1, last1);
+                    auto len2 = detail::distance(first2, last2);
+                    return {std::next(first1, len1), std::next(first2, len2),
+                        std::next(dest, len1 + len2)};
                 }
 
                 // Not reachable.
@@ -688,6 +694,7 @@ namespace hpx { namespace parallel { inline namespace v1 {
 
                     // Not reachable.
                     HPX_ASSERT(false);
+                    return last;
                 });
         }
 
@@ -802,10 +809,10 @@ namespace hpx {
                 hpx::traits::is_iterator<RandIter1>::value &&
                 hpx::traits::is_iterator<RandIter2>::value &&
                 hpx::traits::is_iterator<RandIter3>::value &&
-                hpx::traits::is_invocable<Comp,
+                hpx::is_invocable_v<Comp,
                     typename std::iterator_traits<RandIter1>::value_type,
                     typename std::iterator_traits<RandIter2>::value_type
-                >::value
+                >
             )>
         // clang-format on
         friend typename hpx::parallel::util::detail::algorithm_result<ExPolicy,
@@ -843,10 +850,10 @@ namespace hpx {
                 hpx::traits::is_iterator<RandIter1>::value &&
                 hpx::traits::is_iterator<RandIter2>::value &&
                 hpx::traits::is_iterator<RandIter3>::value &&
-                hpx::traits::is_invocable<Comp,
+                hpx::is_invocable_v<Comp,
                     typename std::iterator_traits<RandIter1>::value_type,
                     typename std::iterator_traits<RandIter2>::value_type
-                >::value
+                >
             )>
         // clang-format on
         friend RandIter3 tag_invoke(merge_t, RandIter1 first1, RandIter1 last1,
@@ -887,10 +894,10 @@ namespace hpx {
             HPX_CONCEPT_REQUIRES_(
                 hpx::is_execution_policy<ExPolicy>::value &&
                 hpx::traits::is_iterator<RandIter>::value &&
-                hpx::traits::is_invocable<Comp,
+                hpx::is_invocable_v<Comp,
                     typename std::iterator_traits<RandIter>::value_type,
                     typename std::iterator_traits<RandIter>::value_type
-                >::value
+                >
             )>
         // clang-format on
         friend typename hpx::parallel::util::detail::algorithm_result<
@@ -916,10 +923,10 @@ namespace hpx {
             typename Comp = hpx::parallel::v1::detail::less,
             HPX_CONCEPT_REQUIRES_(
                 hpx::traits::is_iterator<RandIter>::value &&
-                hpx::traits::is_invocable<Comp,
+                hpx::is_invocable_v<Comp,
                     typename std::iterator_traits<RandIter>::value_type,
                     typename std::iterator_traits<RandIter>::value_type
-                >::value
+                >
             )>
         // clang-format on
         friend void tag_invoke(inplace_merge_t, RandIter first, RandIter middle,

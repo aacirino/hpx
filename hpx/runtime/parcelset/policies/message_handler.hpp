@@ -7,11 +7,13 @@
 #pragma once
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 
 #if defined(HPX_HAVE_NETWORKING)
-#include <hpx/modules/errors.hpp>
 #include <hpx/runtime/parcelset_fwd.hpp>
 #include <hpx/functional/function.hpp>
+
+#include <system_error>
 
 namespace hpx { namespace parcelset { namespace policies
 {
@@ -25,7 +27,7 @@ namespace hpx { namespace parcelset { namespace policies
         };
 
         typedef util::function_nonser<
-            void(boost::system::error_code const&, parcel const&)
+            void(std::error_code const&, parcel const&)
         > write_handler_type;
 
         virtual ~message_handler() {}
@@ -36,4 +38,5 @@ namespace hpx { namespace parcelset { namespace policies
     };
 }}}
 
+#endif
 #endif

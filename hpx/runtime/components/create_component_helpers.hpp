@@ -7,16 +7,17 @@
 #pragma once
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 #include <hpx/async_colocated/async_colocated_fwd.hpp>
 #include <hpx/async_distributed/detail/async_implementations_fwd.hpp>
 #include <hpx/async_local/async_fwd.hpp>
 #include <hpx/futures/future.hpp>
 #include <hpx/modules/errors.hpp>
-#include <hpx/runtime/naming/id_type.hpp>
-#include <hpx/runtime/naming/name.hpp>
+#include <hpx/naming_base/id_type.hpp>
 
 #include <cstddef>
 #include <utility>
+#include <type_traits>
 #include <vector>
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -45,7 +46,7 @@ namespace hpx { namespace components {
         }
 
         using action_type = server::create_component_action<Component,
-            typename hpx::util::decay<Ts>::type...>;
+            typename std::decay<Ts>::type...>;
 
         return hpx::async<action_type>(gid, std::forward<Ts>(vs)...);
     }
@@ -64,7 +65,7 @@ namespace hpx { namespace components {
         }
 
         using action_type = server::bulk_create_component_action<Component,
-            typename hpx::util::decay<Ts>::type...>;
+            typename std::decay<Ts>::type...>;
 
         return hpx::async<action_type>(gid, count, std::forward<Ts>(vs)...);
     }
@@ -88,7 +89,7 @@ namespace hpx { namespace components {
         naming::id_type const& gid, Ts&&... vs)
     {
         using action_type = server::create_component_action<Component,
-            typename hpx::util::decay<Ts>::type...>;
+            typename std::decay<Ts>::type...>;
 
         return hpx::detail::async_colocated<action_type>(
             gid, std::forward<Ts>(vs)...);
@@ -106,7 +107,7 @@ namespace hpx { namespace components {
         naming::id_type const& gid, std::size_t count, Ts&&... vs)
     {
         using action_type = server::bulk_create_component_action<Component,
-            typename hpx::util::decay<Ts>::type...>;
+            typename std::decay<Ts>::type...>;
 
         return hpx::detail::async_colocated<action_type>(
             gid, count, std::forward<Ts>(vs)...);
@@ -121,3 +122,4 @@ namespace hpx { namespace components {
             .get();
     }
 }}    // namespace hpx::components
+#endif

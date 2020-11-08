@@ -6,16 +6,18 @@
 //  file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 #include <hpx/assert.hpp>
 #include <hpx/async_base/launch_policy.hpp>
 #include <hpx/async_distributed/applier/applier.hpp>
 #include <hpx/async_distributed/applier/bind_naming_wrappers.hpp>
 #include <hpx/components_base/component_type.hpp>
 #include <hpx/modules/errors.hpp>
+#include <hpx/naming/credit_handling.hpp>
+#include <hpx/naming_base/address.hpp>
+#include <hpx/naming_base/id_type.hpp>
 #include <hpx/runtime/agas/interface.hpp>
 #include <hpx/runtime/components/server/component_base.hpp>
-#include <hpx/runtime/naming/address.hpp>
-#include <hpx/runtime/naming/name.hpp>
 #include <hpx/runtime_fwd.hpp>
 
 #include <cstdint>
@@ -170,4 +172,4 @@ namespace hpx { namespace components { namespace detail
         return naming::id_type(gid, naming::id_type::managed);
     }
 }}}
-
+#endif

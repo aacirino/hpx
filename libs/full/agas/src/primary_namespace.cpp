@@ -7,6 +7,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 #include <hpx/agas/primary_namespace.hpp>
 #include <hpx/agas/server/primary_namespace.hpp>
 #include <hpx/assert.hpp>
@@ -20,6 +21,7 @@
 
 #include <cstdint>
 #include <string>
+#include <system_error>
 #include <utility>
 #include <vector>
 
@@ -195,7 +197,7 @@ namespace hpx { namespace agas {
 #if defined(HPX_HAVE_NETWORKING)
     void primary_namespace::route(parcelset::parcel&& p,
         util::function_nonser<void(
-            boost::system::error_code const&, parcelset::parcel const&)>&& f)
+            std::error_code const&, parcelset::parcel const&)>&& f)
     {
         // compose request
         naming::gid_type const& id = p.destination();
@@ -206,7 +208,7 @@ namespace hpx { namespace agas {
         {
             hpx::apply(
                 &server::primary_namespace::route, server_.get(), std::move(p));
-            f(boost::system::error_code(), parcelset::parcel());
+            f(std::error_code(), parcelset::parcel());
             return;
         }
 
@@ -316,3 +318,4 @@ namespace hpx { namespace agas {
         server_->unregister_server_instance(ec);
     }
 }}    // namespace hpx::agas
+#endif

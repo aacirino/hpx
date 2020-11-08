@@ -12,7 +12,7 @@
 
 #include <hpx/config.hpp>
 
-#if defined(HPX_HAVE_NETWORKING)
+#if defined(HPX_HAVE_NETWORKING) && !defined(HPX_COMPUTE_DEVICE_CODE)
 #include <hpx/actions/actions_fwd.hpp>
 #include <hpx/runtime/parcelset_fwd.hpp>
 
@@ -22,8 +22,8 @@
 #include <hpx/components_base/pinned_ptr.hpp>
 #include <hpx/coroutines/thread_enums.hpp>
 #include <hpx/coroutines/thread_id_type.hpp>
+#include <hpx/naming_base/id_type.hpp>
 #include <hpx/preprocessor/stringize.hpp>
-#include <hpx/runtime/naming/name.hpp>
 #include <hpx/serialization/traits/needs_automatic_registration.hpp>
 #include <hpx/serialization/traits/polymorphic_traits.hpp>
 #include <hpx/serialization/tuple.hpp>

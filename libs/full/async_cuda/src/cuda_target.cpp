@@ -14,9 +14,9 @@
 #include <hpx/runtime_fwd.hpp>
 #include <hpx/threading_base/thread_helpers.hpp>
 
-#if defined(HPX_HAVE_DISTRIBUTED_RUNTIME)
+#if defined(HPX_HAVE_DISTRIBUTED_RUNTIME) && !defined(HPX_COMPUTE_DEVICE_CODE)
+#include <hpx/naming_base/id_type.hpp>
 #include <hpx/runtime/find_here.hpp>
-#include <hpx/runtime/naming/id_type_impl.hpp>
 #if !defined(HPX_COMPUTE_DEVICE_CODE)
 #if defined(HPX_HAVE_MORE_THAN_64_THREADS)
 #if defined(HPX_HAVE_MAX_CPU_COUNT)
@@ -25,6 +25,7 @@
 #include <hpx/serialization/dynamic_bitset.hpp>
 #endif
 #endif
+#include <hpx/naming/credit_handling.hpp>
 #include <hpx/serialization/serialize.hpp>
 #endif
 #endif
@@ -34,7 +35,7 @@
 #include <string>
 #include <utility>
 
-#include <cuda_runtime.h>
+#include <hpx/async_cuda/custom_gpu_api.hpp>
 
 namespace hpx { namespace cuda { namespace experimental {
     void target::native_handle_type::init_processing_units()
@@ -178,7 +179,7 @@ namespace hpx { namespace cuda { namespace experimental {
     ///////////////////////////////////////////////////////////////////////////
     void target::synchronize() const
     {
-#if defined(HPX_HAVE_DISTRIBUTED_RUNTIME)
+#if defined(HPX_HAVE_DISTRIBUTED_RUNTIME) && !defined(HPX_COMPUTE_DEVICE_CODE)
         // FIXME: implement remote targets
         HPX_ASSERT(hpx::find_here() == locality_);
 #endif

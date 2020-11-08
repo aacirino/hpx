@@ -9,14 +9,11 @@
 #include <hpx/config.hpp>
 #include <hpx/parallel/algorithm.hpp>
 #include <hpx/parallel/container_algorithms.hpp>
-#if defined(HPX_HAVE_DISTRIBUTED_RUNTIME)
+#if defined(HPX_HAVE_DISTRIBUTED_RUNTIME) && !defined(HPX_COMPUTE_DEVICE_CODE)
 #include <hpx/parallel/segmented_algorithm.hpp>
 #endif
 
 namespace hpx {
-    using hpx::parallel::adjacent_find;
-    using hpx::parallel::is_sorted;
-    using hpx::parallel::is_sorted_until;
     using hpx::parallel::lexicographical_compare;
     using hpx::parallel::max_element;
     using hpx::parallel::min_element;

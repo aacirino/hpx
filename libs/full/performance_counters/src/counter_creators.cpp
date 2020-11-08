@@ -5,9 +5,11 @@
 //  file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 #include <hpx/async_distributed/async.hpp>
 #include <hpx/functional/function.hpp>
 #include <hpx/modules/errors.hpp>
+#include <hpx/naming_base/id_type.hpp>
 #include <hpx/performance_counters/counter_creators.hpp>
 #include <hpx/performance_counters/counters.hpp>
 #include <hpx/performance_counters/server/primary_namespace_counters.hpp>
@@ -15,7 +17,6 @@
 #include <hpx/runtime/agas/server/component_namespace.hpp>
 #include <hpx/runtime/agas/server/locality_namespace.hpp>
 #include <hpx/runtime/agas/server/symbol_namespace.hpp>
-#include <hpx/runtime/naming/name.hpp>
 
 #include <cstdint>
 #include <string>
@@ -609,3 +610,4 @@ namespace hpx { namespace performance_counters {
         return naming::invalid_gid;
     }
 }}    // namespace hpx::performance_counters
+#endif

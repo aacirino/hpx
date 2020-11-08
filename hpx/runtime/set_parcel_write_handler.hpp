@@ -7,14 +7,13 @@
 #pragma once
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 
 #if defined(HPX_HAVE_NETWORKING)
-#include <hpx/modules/errors.hpp>
 #include <hpx/runtime/parcelset_fwd.hpp>
 #include <hpx/functional/function.hpp>
 
-#include <boost/system/error_code.hpp>
-
+#include <system_error>
 namespace hpx
 {
     /// The type of a function which can be registered as a parcel write handler
@@ -25,7 +24,7 @@ namespace hpx
     ///       networking library and if no explicit parcel handler function was
     ///       specified for the parcel.
     typedef util::function_nonser<
-            void(boost::system::error_code const&, parcelset::parcel const&)
+            void(std::error_code const&, parcelset::parcel const&)
         > parcel_write_handler_type;
 
     /// Set the default parcel write handler which is invoked once a parcel has
@@ -46,4 +45,5 @@ namespace hpx
         parcel_write_handler_type const& f);
 }
 
+#endif
 #endif

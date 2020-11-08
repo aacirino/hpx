@@ -5,11 +5,13 @@
 //  file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 #include <hpx/actions_base/plain_action.hpp>
+#include <hpx/async_colocated/get_colocation_id.hpp>
 #include <hpx/modules/async_distributed.hpp>
+#include <hpx/naming_base/id_type.hpp>
 #include <hpx/runtime/agas/interface.hpp>
 #include <hpx/runtime/components/server/destroy_component.hpp>
-#include <hpx/runtime/naming/name.hpp>
 
 #include <hpx/modules/logging.hpp>
 
@@ -61,4 +63,4 @@ namespace hpx { namespace components { namespace server
         hpx_destroy_component_action()(id, gid, addr);
     }
 }}}
-
+#endif

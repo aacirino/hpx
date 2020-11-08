@@ -1456,6 +1456,7 @@ namespace hpx {
         // wait for the thread to run
         {
             std::unique_lock<std::mutex> lk(mtx);
+            // NOLINTNEXTLINE(bugprone-infinite-loop)
             while (!running)    // -V776 // -V1044
                 cond.wait(lk);
         }
@@ -1926,7 +1927,7 @@ namespace hpx {
     /// Unregister an external OS-thread with HPX
     bool runtime::unregister_thread()
     {
-        if (nullptr != get_runtime_ptr())
+        if (nullptr == get_runtime_ptr())
             return false;    // never registered
 
         deinit_tss_helper(
@@ -1963,7 +1964,8 @@ namespace hpx {
         runtime* rt = get_runtime_ptr();
         if (nullptr == rt || rt->get_state() == state_invalid)
         {
-            return naming::invalid_locality_id;
+            // same as naming::invalid_locality_id
+            return ~static_cast<std::uint32_t>(0);
         }
 
         return rt->get_locality_id(ec);

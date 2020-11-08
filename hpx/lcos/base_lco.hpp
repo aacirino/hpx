@@ -7,6 +7,7 @@
 #pragma once
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 #include <hpx/actions/base_action.hpp>
 #include <hpx/actions/transfer_action.hpp>
 #include <hpx/actions/transfer_continuation_action.hpp>
@@ -15,9 +16,9 @@
 #include <hpx/components_base/component_type.hpp>
 #include <hpx/components_base/get_lva.hpp>
 #include <hpx/lcos_fwd.hpp>
+#include <hpx/naming_base/id_type.hpp>
 #include <hpx/runtime/components/server/managed_component_base.hpp>
 #include <hpx/runtime/components_fwd.hpp>
-#include <hpx/runtime/naming/id_type.hpp>
 
 #include <hpx/plugins/parcel/coalescing_message_handler_registration.hpp>
 
@@ -162,4 +163,4 @@ HPX_ACTION_USES_MESSAGE_COALESCING_NOTHROW_DECLARATION(
 HPX_ACTION_USES_MESSAGE_COALESCING_NOTHROW_DECLARATION(
     hpx::lcos::base_lco::set_exception_action, "lco_set_value_action",
     std::size_t(-1), std::size_t(-1))
-
+#endif

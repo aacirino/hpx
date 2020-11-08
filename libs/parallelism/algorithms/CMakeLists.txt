@@ -54,6 +54,7 @@ set(algorithms_headers
     hpx/parallel/algorithms/minmax.hpp
     hpx/parallel/algorithms/mismatch.hpp
     hpx/parallel/algorithms/move.hpp
+    hpx/parallel/algorithms/partial_sort.hpp
     hpx/parallel/algorithms/partition.hpp
     hpx/parallel/algorithms/reduce_by_key.hpp
     hpx/parallel/algorithms/reduce.hpp
@@ -82,6 +83,7 @@ set(algorithms_headers
     hpx/parallel/algorithms/uninitialized_move.hpp
     hpx/parallel/algorithms/uninitialized_value_construct.hpp
     hpx/parallel/algorithms/unique.hpp
+    hpx/parallel/container_algorithms/adjacent_find.hpp
     hpx/parallel/container_algorithms/all_any_none.hpp
     hpx/parallel/container_algorithms/copy.hpp
     hpx/parallel/container_algorithms/count.hpp
@@ -96,6 +98,7 @@ set(algorithms_headers
     hpx/parallel/container_algorithms/includes.hpp
     hpx/parallel/container_algorithms/is_heap.hpp
     hpx/parallel/container_algorithms/is_partitioned.hpp
+    hpx/parallel/container_algorithms/is_sorted.hpp
     hpx/parallel/container_algorithms/make_heap.hpp
     hpx/parallel/container_algorithms/merge.hpp
     hpx/parallel/container_algorithms/minmax.hpp

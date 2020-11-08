@@ -9,6 +9,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 #include <hpx/agas/server/primary_namespace.hpp>
 #include <hpx/assert.hpp>
 #include <hpx/components_base/component_type.hpp>
@@ -16,6 +17,7 @@
 #include <hpx/functional/bind_front.hpp>
 #include <hpx/modules/format.hpp>
 #include <hpx/modules/logging.hpp>
+#include <hpx/naming/credit_handling.hpp>
 #include <hpx/performance_counters/counter_creators.hpp>
 #include <hpx/performance_counters/counters.hpp>
 #include <hpx/performance_counters/manage_counter_type.hpp>
@@ -744,4 +746,4 @@ void locality_namespace::counter_data::increment_num_threads_count()
     }
 }
 }}}
-
+#endif

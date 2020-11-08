@@ -7,6 +7,7 @@
 #pragma once
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 #include <hpx/actions_base/traits/action_priority.hpp>
 #include <hpx/actions_base/traits/extract_action.hpp>
 #include <hpx/datastructures/tuple.hpp>
@@ -20,6 +21,7 @@
 #include <hpx/async_distributed/applier/apply.hpp>
 
 #include <cstddef>
+#include <system_error>
 #include <type_traits>
 #include <utility>
 
@@ -162,7 +164,7 @@ namespace hpx {
 
             // invoke callback
 #if defined(HPX_HAVE_NETWORKING)
-            cb(boost::system::error_code(), parcelset::parcel());
+            cb(std::error_code(), parcelset::parcel());
 #else
             cb();
 #endif
@@ -451,3 +453,4 @@ namespace hpx {
         }
     }    // namespace functional
 }    // namespace hpx
+#endif

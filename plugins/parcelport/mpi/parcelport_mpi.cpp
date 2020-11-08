@@ -8,6 +8,7 @@
 
 #include <hpx/config.hpp>
 
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 #if defined(HPX_HAVE_NETWORKING)
 #include <hpx/plugin/traits/plugin_config_data.hpp>
 
@@ -37,6 +38,7 @@
 #include <exception>
 #include <memory>
 #include <string>
+#include <system_error>
 #include <type_traits>
 
 #include <hpx/config/warnings_prefix.hpp>
@@ -230,7 +232,7 @@ namespace hpx { namespace parcelset
             }
 
             void early_write_handler(
-                boost::system::error_code const& ec, parcel const & p)
+                std::error_code const& ec, parcel const & p)
             {
                 if (ec) {
                     // all errors during early parcel handling are fatal
@@ -304,4 +306,5 @@ HPX_REGISTER_PARCELPORT(
     hpx::parcelset::policies::mpi::parcelport,
     mpi);
 
+#endif
 #endif

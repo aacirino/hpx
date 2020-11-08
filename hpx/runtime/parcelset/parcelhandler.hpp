@@ -9,6 +9,7 @@
 #pragma once
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 
 #if defined(HPX_HAVE_NETWORKING)
 #include <hpx/agas/agas_fwd.hpp>
@@ -17,8 +18,8 @@
 #include <hpx/functional/bind_front.hpp>
 #include <hpx/modules/errors.hpp>
 #include <hpx/modules/logging.hpp>
-#include <hpx/runtime/naming/address.hpp>
-#include <hpx/runtime/naming/name.hpp>
+#include <hpx/naming_base/address.hpp>
+#include <hpx/naming_base/id_type.hpp>
 #include <hpx/runtime/parcelset/locality.hpp>
 #include <hpx/runtime/parcelset/parcelport.hpp>
 #include <hpx/runtime_fwd.hpp>
@@ -36,6 +37,7 @@
 #include <mutex>
 #include <sstream>
 #include <string>
+#include <system_error>
 #include <utility>
 #include <vector>
 
@@ -44,7 +46,7 @@
 namespace hpx { namespace parcelset
 {
     // default callback for put_parcel
-    void default_write_handler(boost::system::error_code const&,
+    void default_write_handler(std::error_code const&,
         parcel const& p);
 
     /// The \a parcelhandler is the representation of the parcelset inside a
@@ -177,7 +179,7 @@ namespace hpx { namespace parcelset
         ///                 function object is expected to be:
         ///
         /// \code
-        ///     void f (boost::system::error_code const& err, std::size_t );
+        ///     void f (std::error_code const& err, std::size_t );
         /// \endcode
         ///
         ///                 where \a err is the status code of the operation and
@@ -209,7 +211,7 @@ namespace hpx { namespace parcelset
         ///                 of these function object are expected to be:
         ///
         /// \code
-        ///     void f (boost::system::error_code const& err, std::size_t );
+        ///     void f (std::error_code const& err, std::size_t );
         /// \endcode
         ///
         ///                 where \a err is the status code of the operation and
@@ -388,7 +390,7 @@ namespace hpx { namespace parcelset
 
         // manage default exception handler
         void invoke_write_handler(
-            boost::system::error_code const& ec, parcel const & p) const;
+            std::error_code const& ec, parcel const & p) const;
 
         write_handler_type set_write_handler(write_handler_type f)
         {
@@ -484,4 +486,4 @@ namespace hpx { namespace parcelset
 #include <hpx/config/warnings_suffix.hpp>
 
 #endif
-
+#endif

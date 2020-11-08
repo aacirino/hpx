@@ -5,6 +5,7 @@
 //  file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 #include <hpx/assert.hpp>
 #include <hpx/modules/errors.hpp>
 #include <hpx/functional/bind_front.hpp>
@@ -18,12 +19,12 @@
 #include <hpx/util/pool_timer.hpp>
 
 #include <boost/asio/basic_waitable_timer.hpp>
-#include <boost/system/error_code.hpp>
 
 #include <chrono>
 #include <memory>
 #include <mutex>
 #include <string>
+#include <system_error>
 
 namespace hpx { namespace util { namespace detail
 {
@@ -51,7 +52,7 @@ namespace hpx { namespace util { namespace detail
 
         bool is_started() const { return is_started_; }
         bool is_terminated() const { return is_terminated_; }
-        void timer_handler(const boost::system::error_code&);
+        void timer_handler(const std::error_code&);
 
         void terminate();             // handle system shutdown
         bool stop_locked();
@@ -95,7 +96,7 @@ namespace hpx { namespace util { namespace detail
         )
     {}
 
-    void pool_timer::timer_handler(const boost::system::error_code& err)
+    void pool_timer::timer_handler(const std::error_code& err)
     {
         if(!is_stopped_ || !is_terminated_)
         {
@@ -228,3 +229,4 @@ namespace hpx { namespace util
         return timer_->is_terminated();
     }
 }}
+#endif

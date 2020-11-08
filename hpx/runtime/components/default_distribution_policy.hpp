@@ -9,6 +9,7 @@
 #pragma once
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 #include <hpx/actions_base/actions_base_support.hpp>
 #include <hpx/actions_base/traits/extract_action.hpp>
 #include <hpx/assert.hpp>
@@ -19,10 +20,9 @@
 #include <hpx/futures/traits/promise_local_result.hpp>
 #include <hpx/lcos/packaged_action.hpp>
 #include <hpx/modules/execution.hpp>
+#include <hpx/naming_base/id_type.hpp>
 #include <hpx/runtime/components/create_component_helpers.hpp>
 #include <hpx/runtime/find_here.hpp>
-#include <hpx/runtime/naming/id_type.hpp>
-#include <hpx/runtime/naming/name.hpp>
 #include <hpx/serialization/serialization_fwd.hpp>
 #include <hpx/serialization/shared_ptr.hpp>
 #include <hpx/serialization/vector.hpp>
@@ -385,4 +385,4 @@ namespace hpx
     }
 }
 /// \endcond
-
+#endif

@@ -10,6 +10,7 @@
 // file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 
 #if defined(HPX_WINDOWS)
 #include <hpx/components/process/util/windows/search_path.hpp>
@@ -24,6 +25,7 @@
 #include <cstdlib>
 #include <stdexcept>
 #include <string>
+#include <system_error>
 
 namespace hpx { namespace components { namespace process { namespace windows
 {
@@ -95,7 +97,7 @@ namespace hpx { namespace components { namespace process { namespace windows
             {
                 filesystem::path p2 = p;
                 p2 += *it2;
-                filesystem::error_code ec;
+                std::error_code ec;
                 bool file = filesystem::is_regular_file(p2, ec);
                 if (!ec && file &&
                     SHGetFileInfoA(p2.string().c_str(), 0, nullptr, 0,
@@ -110,4 +112,5 @@ namespace hpx { namespace components { namespace process { namespace windows
 #endif
 }}}}
 
+#endif
 #endif

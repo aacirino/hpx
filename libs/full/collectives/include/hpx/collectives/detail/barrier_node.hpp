@@ -7,6 +7,7 @@
 #pragma once
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 #include <hpx/actions/base_action.hpp>
 #include <hpx/actions/transfer_action.hpp>
 #include <hpx/actions/transfer_continuation_action.hpp>
@@ -14,8 +15,8 @@
 #include <hpx/assert.hpp>
 #include <hpx/lcos/base_lco.hpp>
 #include <hpx/modules/futures.hpp>
+#include <hpx/naming_base/id_type.hpp>
 #include <hpx/runtime/components/server/managed_component_base.hpp>
-#include <hpx/runtime/naming/id_type.hpp>
 #include <hpx/synchronization/barrier.hpp>
 #include <hpx/synchronization/spinlock.hpp>
 #include <hpx/thread_support/atomic_count.hpp>
@@ -109,3 +110,4 @@ HPX_REGISTER_ACTION_DECLARATION(
     hpx::lcos::detail::barrier_node::gather_action, barrier_node_gather_action);
 
 #include <hpx/config/warnings_suffix.hpp>
+#endif

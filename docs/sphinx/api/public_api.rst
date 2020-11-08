@@ -31,7 +31,7 @@ Classes
 Functions
 ---------
 
-- :cpp:func:`hpx::parallel::v1::adjacent_find`
+- :cpp:func:`hpx::adjacent_find`
 - :cpp:func:`hpx::all_of`
 - :cpp:func:`hpx::any_of`
 - :cpp:func:`hpx::copy`
@@ -56,8 +56,8 @@ Functions
 - :cpp:func:`hpx::is_heap`
 - :cpp:func:`hpx::is_heap_until`
 - :cpp:func:`hpx::is_partitioned`
-- :cpp:func:`hpx::parallel::v1::is_sorted`
-- :cpp:func:`hpx::parallel::v1::is_sorted_until`
+- :cpp:func:`hpx::is_sorted`
+- :cpp:func:`hpx::is_sorted_until`
 - :cpp:func:`hpx::parallel::v1::lexicographical_compare`
 - :cpp:func:`hpx::make_heap`
 - :cpp:func:`hpx::parallel::v1::max_element`
@@ -67,6 +67,7 @@ Functions
 - :cpp:func:`hpx::parallel::v1::mismatch`
 - :cpp:func:`hpx::move`
 - :cpp:func:`hpx::none_of`
+- :cpp:func:`hpx::partial_sort`
 - :cpp:func:`hpx::parallel::v1::partition`
 - :cpp:func:`hpx::parallel::v1::partition_copy`
 - :cpp:func:`hpx::parallel::v1::remove`
@@ -98,6 +99,7 @@ Functions
 - :cpp:func:`hpx::for_loop_n`
 - :cpp:func:`hpx::for_loop_n_strided`
 
+- :cpp:func:`hpx::ranges::adjacent_find`
 - :cpp:func:`hpx::ranges::all_of`
 - :cpp:func:`hpx::ranges::any_of`
 - :cpp:func:`hpx::ranges::copy`
@@ -122,6 +124,8 @@ Functions
 - :cpp:func:`hpx::ranges::is_heap`
 - :cpp:func:`hpx::ranges::is_heap_until`
 - :cpp:func:`hpx::ranges::is_partitioned`
+- :cpp:func:`hpx::ranges::is_sorted`
+- :cpp:func:`hpx::ranges::is_sorted_until`
 - :cpp:func:`hpx::ranges::make_heap`
 - :cpp:func:`hpx::ranges::merge`
 - :cpp:func:`hpx::ranges::move`
@@ -749,14 +753,13 @@ Header ``hpx/type_traits.hpp``
 ==============================
 
 Corresponds to the C++ standard library header
-:cppreference-header:`type_traits`. Provides
-:cpp:class:`hpx::util::invoke_result` as a replacement for
-``std::invoke_result``.
+:cppreference-header:`type_traits`.
 
 Classes
 -------
 
-- :cpp:struct:`hpx::util::invoke_result`
+- :cpp:struct:`hpx::is_invocable`
+- :cpp:struct:`hpx::is_invocable_r`
 
 Header ``hpx/version.hpp``
 ==========================

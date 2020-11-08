@@ -9,6 +9,7 @@
 #pragma once
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 #include <hpx/actions_base/traits/extract_action.hpp>
 #include <hpx/async_base/launch_policy.hpp>
 #include <hpx/async_distributed/applier/detail/apply_implementations_fwd.hpp>
@@ -16,9 +17,8 @@
 #include <hpx/async_distributed/detail/async_unwrap_result_implementations.hpp>
 #include <hpx/async_distributed/detail/sync_implementations.hpp>
 #include <hpx/futures/traits/promise_local_result.hpp>
+#include <hpx/naming_base/id_type.hpp>
 #include <hpx/runtime/components/client_base.hpp>
-#include <hpx/runtime/naming/id_type.hpp>
-#include <hpx/runtime/naming/name.hpp>
 #include <hpx/traits/is_distribution_policy.hpp>
 
 #include <type_traits>
@@ -141,4 +141,4 @@ namespace hpx
     }
 }
 /// \endcond
-
+#endif

@@ -9,15 +9,17 @@
 #pragma once
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 #include <hpx/agas/agas_fwd.hpp>
 #include <hpx/agas/gva.hpp>
 #include <hpx/datastructures/tuple.hpp>
 #include <hpx/futures/future.hpp>
-#include <hpx/runtime/naming/address.hpp>
+#include <hpx/naming_base/address.hpp>
 #include <hpx/runtime/parcelset_fwd.hpp>
 
 #include <cstdint>
 #include <memory>
+#include <system_error>
 #include <utility>
 #include <vector>
 
@@ -67,8 +69,8 @@ namespace hpx { namespace agas {
 
 #if defined(HPX_HAVE_NETWORKING)
         void route(parcelset::parcel&& p,
-            util::function_nonser<void(boost::system::error_code const&,
-                parcelset::parcel const&)>&& f);
+            util::function_nonser<void(
+                std::error_code const&, parcelset::parcel const&)>&& f);
 #endif
 
         resolved_type resolve_gid(naming::gid_type const& id);
@@ -104,3 +106,4 @@ namespace hpx { namespace agas {
 }}    // namespace hpx::agas
 
 #include <hpx/config/warnings_suffix.hpp>
+#endif

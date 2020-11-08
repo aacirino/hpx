@@ -11,6 +11,7 @@
 #pragma once
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 #include <hpx/actions_base/actions_base_fwd.hpp>
 #include <hpx/actions_base/actions_base_support.hpp>
 #include <hpx/actions_base/basic_action_fwd.hpp>
@@ -31,13 +32,13 @@
 #include <hpx/futures/traits/promise_local_result.hpp>
 #include <hpx/modules/errors.hpp>
 #include <hpx/modules/logging.hpp>
+#include <hpx/naming_base/address.hpp>
+#include <hpx/naming_base/id_type.hpp>
 #include <hpx/preprocessor/cat.hpp>
 #include <hpx/preprocessor/expand.hpp>
 #include <hpx/preprocessor/nargs.hpp>
 #include <hpx/preprocessor/stringize.hpp>
 #include <hpx/runtime/actions/continuation.hpp>
-#include <hpx/runtime/naming/address.hpp>
-#include <hpx/runtime/naming/id_type.hpp>
 #include <hpx/runtime_fwd.hpp>
 #include <hpx/traits/action_decorate_function.hpp>
 #include <hpx/traits/is_distribution_policy.hpp>
@@ -870,4 +871,5 @@ namespace hpx { namespace actions {
     HPX_REGISTER_ACTION_2(action, actionname)                                  \
     HPX_REGISTER_ACTION_FACTORY_ID(actionname, actionid)                       \
 /**/
+#endif
 #endif

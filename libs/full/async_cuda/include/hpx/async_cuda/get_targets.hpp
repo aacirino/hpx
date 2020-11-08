@@ -9,8 +9,11 @@
 #pragma once
 
 #include <hpx/config.hpp>
+
 #include <hpx/modules/futures.hpp>
-#include <hpx/modules/naming.hpp>
+#if defined(HPX_HAVE_DISTRIBUTED_RUNTIME)
+#include <hpx/naming_base/id_type.hpp>
+#endif
 
 #include <vector>
 
@@ -18,7 +21,7 @@ namespace hpx { namespace cuda { namespace experimental {
     struct HPX_EXPORT target;
 
     HPX_EXPORT std::vector<target> get_local_targets();
-#if defined(HPX_HAVE_DISTRIBUTED_RUNTIME)
+#if defined(HPX_HAVE_DISTRIBUTED_RUNTIME) && !defined(HPX_COMPUTE_DEVICE_CODE)
     HPX_EXPORT hpx::future<std::vector<target>> get_targets(
         hpx::id_type const& locality);
 #endif

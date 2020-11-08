@@ -5,9 +5,11 @@
 # file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
 cmake_minimum_required(VERSION 3.13 FATAL_ERROR)
+
 if(NOT HPX_WITH_DISTRIBUTED_RUNTIME)
   return()
 endif()
+
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 set(agas_headers
@@ -37,6 +39,6 @@ add_hpx_module(
   COMPAT_HEADERS ${agas_compat_headers}
   DEPENDENCIES hpx_core
   MODULE_DEPENDENCIES hpx_async_distributed hpx_actions hpx_components_base
-                      hpx_naming
+                      hpx_naming_base
   CMAKE_SUBDIRS examples tests
 )

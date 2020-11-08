@@ -9,7 +9,7 @@
 
 #include <hpx/config.hpp>
 
-#if defined(HPX_HAVE_CUDA)
+#if defined(HPX_HAVE_GPU_SUPPORT)
 #include <hpx/assert.hpp>
 #include <hpx/async_cuda/target.hpp>
 #include <hpx/compute/cuda/detail/launch.hpp>
@@ -20,7 +20,7 @@
 #include <hpx/statistics/min.hpp>
 #include <hpx/type_support/unused.hpp>
 
-#include <cuda_runtime.h>
+#include <hpx/async_cuda/custom_gpu_api.hpp>
 
 #include <algorithm>
 #include <cstddef>
@@ -106,8 +106,7 @@ namespace hpx { namespace cuda { namespace experimental {
         // called. The pointer hint may be used to provide locality of
         // reference: the allocator, if supported by the implementation, will
         // attempt to allocate the new memory block as close as possible to hint.
-        pointer allocate(
-            size_type n, std::allocator<void>::const_pointer hint = nullptr)
+        pointer allocate(size_type n, const void* hint = nullptr)
         {
 #if defined(HPX_COMPUTE_DEVICE_CODE)
             pointer result;

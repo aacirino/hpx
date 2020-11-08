@@ -7,6 +7,7 @@
 #pragma once
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 #include <hpx/actions_base/actions_base_support.hpp>
 #include <hpx/actions_base/traits/extract_action.hpp>
 #include <hpx/agas/primary_namespace.hpp>
@@ -20,7 +21,7 @@
 #include <hpx/functional/unique_function.hpp>
 #include <hpx/futures/future.hpp>
 #include <hpx/futures/traits/promise_local_result.hpp>
-#include <hpx/runtime/naming/name.hpp>
+#include <hpx/naming_base/id_type.hpp>
 #include <hpx/traits/is_continuation.hpp>
 #include <hpx/type_support/pack.hpp>
 #include <hpx/util/bind_action.hpp>
@@ -153,3 +154,4 @@ namespace hpx { namespace detail {
             std::forward<Continuation>(cont), gid, std::forward<Ts>(vs)...);
     }
 }}    // namespace hpx::detail
+#endif

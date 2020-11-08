@@ -7,6 +7,7 @@
 #pragma once
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 
 #if defined(HPX_HAVE_NETWORKING) && defined(HPX_HAVE_PARCELPORT_MPI)
 
@@ -22,6 +23,7 @@
 
 #include <cstddef>
 #include <memory>
+#include <system_error>
 #include <utility>
 #include <vector>
 
@@ -43,7 +45,7 @@ namespace hpx { namespace parcelset { namespace policies { namespace mpi
         typedef sender sender_type;
 
         typedef util::function_nonser<
-            void(boost::system::error_code const&, parcel const&)
+            void(std::error_code const&, parcel const&)
         > write_handler_type;
 
         typedef std::vector<char> data_type;
@@ -318,4 +320,4 @@ namespace hpx { namespace parcelset { namespace policies { namespace mpi
 
 #endif
 
-
+#endif

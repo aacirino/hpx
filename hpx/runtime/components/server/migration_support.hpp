@@ -7,13 +7,14 @@
 #pragma once
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 #include <hpx/assert.hpp>
 #include <hpx/components_base/pinned_ptr.hpp>
 #include <hpx/functional/bind_front.hpp>
 #include <hpx/modules/futures.hpp>
 #include <hpx/modules/threading_base.hpp>
+#include <hpx/naming_base/id_type.hpp>
 #include <hpx/runtime/agas/interface.hpp>
-#include <hpx/runtime/naming/id_type.hpp>
 #include <hpx/synchronization/spinlock.hpp>
 #include <hpx/traits/action_decorate_function.hpp>
 
@@ -252,4 +253,4 @@ namespace hpx { namespace components
         bool was_marked_for_migration_;
     };
 }}
-
+#endif

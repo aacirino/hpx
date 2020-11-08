@@ -9,13 +9,13 @@
 #pragma once
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 #include <hpx/components_base/component_type.hpp>
 #include <hpx/functional/function.hpp>
 #include <hpx/futures/future.hpp>
+#include <hpx/naming_base/id_type.hpp>
 #include <hpx/runtime/agas/component_namespace.hpp>
 #include <hpx/runtime/agas/server/component_namespace.hpp>
-#include <hpx/runtime/naming/id_type.hpp>
-#include <hpx/runtime/naming/name.hpp>
 
 #include <cstdint>
 #include <string>
@@ -67,4 +67,4 @@ namespace hpx { namespace agas { namespace detail
 
 }}}
 
-
+#endif

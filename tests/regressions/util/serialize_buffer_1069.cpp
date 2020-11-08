@@ -6,6 +6,8 @@
 //  Distributed under the Boost Software License, Version 1.0. (See accompanying
 //  file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
+#include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 #include <hpx/hpx_init.hpp>
 #include <hpx/hpx.hpp>
 #include <hpx/serialization/serialize_buffer.hpp>
@@ -39,10 +41,10 @@ public:
     // we want to make sure anything else uses the std allocator
     template <typename U> struct rebind { typedef std::allocator<U> other; };
 
-    pointer allocate(size_type n, const void *hint=nullptr)
+    pointer allocate(size_type n, const void* = nullptr)
     {
         HPX_TEST_EQ(n, static_cast<size_type>(MEMORY_BLOCK_SIZE));
-        return std::allocator<T>::allocate(n, hint);
+        return std::allocator<T>::allocate(n);
     }
 
     void deallocate(pointer p, size_type n)
@@ -112,4 +114,4 @@ int main(int argc, char* argv[])
     HPX_TEST_EQ(hpx::init(argc, argv), 0);
     return hpx::util::report_errors();
 }
-
+#endif

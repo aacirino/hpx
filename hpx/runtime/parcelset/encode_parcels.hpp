@@ -8,21 +8,25 @@
 //  Distributed under the Boost Software License, Version 1.0. (See accompanying
 //  file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
+// hpxinspect:nodeprecatedinclude:boost/system/system_error.hpp
+// hpxinspect:nodeprecatedname:boost::system::system_error
+
 #pragma once
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 
 #if defined(HPX_HAVE_NETWORKING)
 #include <hpx/actions_base/basic_action.hpp>
 #include <hpx/assert.hpp>
 #include <hpx/modules/errors.hpp>
 #include <hpx/modules/logging.hpp>
-#include <hpx/runtime/naming/split_gid.hpp>
+#include <hpx/naming/detail/preprocess_gid_types.hpp>
+#include <hpx/naming/split_gid.hpp>
 #include <hpx/runtime/parcelset/parcel.hpp>
 #include <hpx/runtime/parcelset/parcel_buffer.hpp>
 #include <hpx/runtime/parcelset/parcelport.hpp>
 #include <hpx/runtime/parcelset_fwd.hpp>
-#include <hpx/runtime/serialization/detail/preprocess_gid_types.hpp>
 #include <hpx/runtime_fwd.hpp>
 #include <hpx/serialization/serialize.hpp>
 #include <hpx/timing/high_resolution_timer.hpp>
@@ -33,6 +37,7 @@
 #if BOOST_ASIO_HAS_BOOST_THROW_EXCEPTION != 0
 #include <boost/exception/exception.hpp>
 #endif
+#include <boost/system/system_error.hpp>
 
 #include <cstddef>
 #include <cstdint>
@@ -282,4 +287,5 @@ namespace hpx
     }
 }
 
+#endif
 #endif

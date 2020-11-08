@@ -9,6 +9,7 @@
 #pragma once
 
 #include <hpx/config.hpp>
+#if !defined(HPX_COMPUTE_DEVICE_CODE)
 #include <hpx/assert.hpp>
 #include <hpx/async_base/launch_policy.hpp>
 #include <hpx/components_base/component_type.hpp>
@@ -17,9 +18,9 @@
 #include <hpx/components_base/traits/component_type_is_compatible.hpp>
 #include <hpx/functional/bind_back.hpp>
 #include <hpx/modules/errors.hpp>
+#include <hpx/naming_base/address.hpp>
+#include <hpx/naming_base/id_type.hpp>
 #include <hpx/runtime/components/client_base.hpp>
-#include <hpx/runtime/naming/address.hpp>
-#include <hpx/runtime/naming/name.hpp>
 #include <hpx/runtime_fwd.hpp>
 
 #include <memory>
@@ -310,4 +311,4 @@ namespace hpx
         return get_ptr<component_type>(p, c.get_id(), ec);
     }
 }
-
+#endif

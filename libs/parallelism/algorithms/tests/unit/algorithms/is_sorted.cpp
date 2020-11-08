@@ -24,6 +24,8 @@ void test_sorted1()
 
     test_sorted1_async(seq(task), IteratorTag());
     test_sorted1_async(par(task), IteratorTag());
+
+    test_sorted1_seq(IteratorTag());
 }
 
 void sorted_test1()
@@ -43,6 +45,8 @@ void test_sorted2()
 
     test_sorted2_async(seq(task), IteratorTag());
     test_sorted2_async(par(task), IteratorTag());
+
+    test_sorted2_seq(IteratorTag());
 }
 
 void sorted_test2()
@@ -62,6 +66,8 @@ void test_sorted3()
 
     test_sorted3_async(seq(task), IteratorTag());
     test_sorted3_async(par(task), IteratorTag());
+
+    test_sorted3_seq(IteratorTag());
 }
 
 void sorted_test3()
@@ -83,6 +89,8 @@ void test_sorted_exception()
 
     test_sorted_exception_async(seq(task), IteratorTag());
     test_sorted_exception_async(par(task), IteratorTag());
+
+    test_sorted_exception_seq(IteratorTag());
 }
 
 void sorted_exception_test()
@@ -105,6 +113,8 @@ void test_sorted_bad_alloc()
 
     test_sorted_bad_alloc_async(seq(task), IteratorTag());
     test_sorted_bad_alloc_async(par(task), IteratorTag());
+
+    test_sorted_bad_alloc_seq(IteratorTag());
 }
 
 void sorted_bad_alloc_test()
